@@ -14,6 +14,8 @@
 		4897556F24A68AD800D6CF49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4897556E24A68AD800D6CF49 /* Assets.xcassets */; };
 		4897557224A68AD800D6CF49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4897557024A68AD800D6CF49 /* LaunchScreen.storyboard */; };
 		4897557A24A6AD2200D6CF49 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4897557924A6AD2200D6CF49 /* TransactionsViewController.swift */; };
+		48A8438924AA7C4700A164A4 /* AddTransaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48A8438824AA7C4700A164A4 /* AddTransaction.storyboard */; };
+		48A8438C24AA7DBA00A164A4 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A8438B24AA7DBA00A164A4 /* AddTransactionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		4897557124A68AD800D6CF49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4897557324A68AD800D6CF49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4897557924A6AD2200D6CF49 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
+		48A8438824AA7C4700A164A4 /* AddTransaction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddTransaction.storyboard; sourceTree = "<group>"; };
+		48A8438B24AA7DBA00A164A4 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,11 +67,21 @@
 				4897557924A6AD2200D6CF49 /* TransactionsViewController.swift */,
 				4897556924A68AD200D6CF49 /* ViewController.swift */,
 				4897556B24A68AD200D6CF49 /* Main.storyboard */,
+				48A8438A24AA7D9F00A164A4 /* AddTransaction */,
 				4897556E24A68AD800D6CF49 /* Assets.xcassets */,
 				4897557024A68AD800D6CF49 /* LaunchScreen.storyboard */,
 				4897557324A68AD800D6CF49 /* Info.plist */,
 			);
 			path = FinanzasFirst;
+			sourceTree = "<group>";
+		};
+		48A8438A24AA7D9F00A164A4 /* AddTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				48A8438824AA7C4700A164A4 /* AddTransaction.storyboard */,
+				48A8438B24AA7DBA00A164A4 /* AddTransactionViewController.swift */,
+			);
+			path = AddTransaction;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +145,7 @@
 				4897557224A68AD800D6CF49 /* LaunchScreen.storyboard in Resources */,
 				4897556F24A68AD800D6CF49 /* Assets.xcassets in Resources */,
 				4897556D24A68AD200D6CF49 /* Main.storyboard in Resources */,
+				48A8438924AA7C4700A164A4 /* AddTransaction.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +158,7 @@
 			files = (
 				4897556A24A68AD200D6CF49 /* ViewController.swift in Sources */,
 				4897556624A68AD200D6CF49 /* AppDelegate.swift in Sources */,
+				48A8438C24AA7DBA00A164A4 /* AddTransactionViewController.swift in Sources */,
 				4897557A24A6AD2200D6CF49 /* TransactionsViewController.swift in Sources */,
 				4897556824A68AD200D6CF49 /* SceneDelegate.swift in Sources */,
 			);

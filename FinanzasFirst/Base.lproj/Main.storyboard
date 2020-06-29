@@ -82,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="141" y="97"/>
+            <point key="canvasLocation" x="-742" y="806"/>
         </scene>
         <!--Transactions View Controller-->
         <scene sceneID="WKl-qV-U5v">
@@ -189,9 +189,32 @@
                                     <outlet property="dataSource" destination="L7C-ZP-c37" id="2eK-ck-ZQc"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RrA-Sw-ELE">
+                                <rect key="frame" x="344" y="792" width="50" height="50"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="GlP-R5-QGq"/>
+                                    <constraint firstAttribute="width" constant="50" id="hrY-iJ-5cd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="7uf-5R-c7c" kind="show" id="d98-rb-LWL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Mq7-Xd-G52" firstAttribute="bottom" secondItem="RrA-Sw-ELE" secondAttribute="bottom" constant="20" id="SUf-3w-gz6"/>
+                            <constraint firstItem="Mq7-Xd-G52" firstAttribute="trailing" secondItem="RrA-Sw-ELE" secondAttribute="trailing" constant="20" id="aRK-85-Zfd"/>
                             <constraint firstItem="bDD-7F-Y2x" firstAttribute="leading" secondItem="Mq7-Xd-G52" secondAttribute="leading" id="aWK-A8-zfL"/>
                             <constraint firstAttribute="bottom" secondItem="bDD-7F-Y2x" secondAttribute="bottom" id="e8y-Bd-jas"/>
                             <constraint firstItem="Mq7-Xd-G52" firstAttribute="trailing" secondItem="bDD-7F-Y2x" secondAttribute="trailing" id="iFE-Sk-ODu"/>
@@ -206,6 +229,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fns-Ya-3ed" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-742.02898550724649" y="95.758928571428569"/>
+        </scene>
+        <!--AddTransaction-->
+        <scene sceneID="mF1-7E-yZm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddTransaction" id="7uf-5R-c7c" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="xqG-EZ-1zb"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yzg-4U-SQq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="-13"/>
         </scene>
     </scenes>
 </document>
