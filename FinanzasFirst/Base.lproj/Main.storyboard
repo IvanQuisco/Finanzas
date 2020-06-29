@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L7C-ZP-c37">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f2J-vs-TWM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Account-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FinanzasFirst" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="LHx-yM-kGW">
-                                <rect key="frame" x="30" y="94" width="80" height="105"/>
+                                <rect key="frame" x="30" y="190" width="80" height="105"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsc-Vd-8lV">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="20.5"/>
@@ -43,7 +43,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="vlQ-rm-Oxn">
-                                <rect key="frame" x="160" y="94" width="224" height="105"/>
+                                <rect key="frame" x="160" y="190" width="224" height="105"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ivan Quintana" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFf-q8-vTW">
                                         <rect key="frame" x="0.0" y="0.0" width="224" height="20.5"/>
@@ -79,12 +79,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Account" id="uBP-Ta-tyB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-742" y="806"/>
+            <point key="canvasLocation" x="1988.4057971014495" y="805.58035714285711"/>
         </scene>
-        <!--Transactions View Controller-->
+        <!--Transactions-->
         <scene sceneID="WKl-qV-U5v">
             <objects>
                 <viewController id="L7C-ZP-c37" customClass="TransactionsViewController" customModule="FinanzasFirst" customModuleProvider="target" sceneMemberID="viewController">
@@ -190,7 +191,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RrA-Sw-ELE">
-                                <rect key="frame" x="344" y="792" width="50" height="50"/>
+                                <rect key="frame" x="344" y="743" width="50" height="50"/>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="GlP-R5-QGq"/>
@@ -222,13 +223,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mq7-Xd-G52"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Transactions" id="wO5-PL-mXb"/>
                     <connections>
                         <outlet property="tableview" destination="bDD-7F-Y2x" id="Rej-7r-Hmw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fns-Ya-3ed" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-742.02898550724649" y="95.758928571428569"/>
+            <point key="canvasLocation" x="1986.9565217391305" y="95.758928571428569"/>
         </scene>
         <!--AddTransaction-->
         <scene sceneID="mF1-7E-yZm">
@@ -238,7 +240,63 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yzg-4U-SQq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="-13"/>
+            <point key="canvasLocation" x="3779.7101449275365" y="-13.392857142857142"/>
+        </scene>
+        <!--Account-->
+        <scene sceneID="aRA-zU-FDh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="g5G-OE-9fb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Account" id="KaK-RM-9Ya"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="9M0-Z6-Zes">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Bb4-V0-iky"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mix-q4-xlF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078.2608695652175" y="805.58035714285711"/>
+        </scene>
+        <!--Transactions-->
+        <scene sceneID="eBr-hS-Tg9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7dz-Wf-xo0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Transactions" id="Ony-43-WxR"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="rKT-Q0-3d4">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="L7C-ZP-c37" kind="relationship" relationship="rootViewController" id="pVI-P2-RHd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="re0-NV-cxX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076.8115942028987" y="95.758928571428569"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="hyY-dL-klM">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="f2J-vs-TWM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EUS-VK-cs7">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="7dz-Wf-xo0" kind="relationship" relationship="viewControllers" id="HbF-z2-Kxm"/>
+                        <segue destination="g5G-OE-9fb" kind="relationship" relationship="viewControllers" id="w5a-hi-p6y"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OOo-7u-Z88" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="166.66666666666669" y="450.66964285714283"/>
         </scene>
     </scenes>
 </document>
