@@ -1,6 +1,6 @@
 import Foundation
 
-public enum GainCategories {
+public enum GainCategories: String {
     case salary, extra
 }
 

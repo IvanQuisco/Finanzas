@@ -6,7 +6,7 @@ public protocol DebitTransaction: Transaction {
 }
 
 
-public enum DebitCategories {
+public enum DebitCategories: String {
     case food, services, transportation, entertainment, other
 }
 

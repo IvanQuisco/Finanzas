@@ -7,20 +7,37 @@
 //
 
 import UIKit
+import FinanzasCore
 
 class AddTransactionViewController: UIViewController {
 
+    @IBOutlet weak var transaccionTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var amountTextfield: UITextField!
     @IBOutlet weak var conceptTextfield: UITextField!
     @IBOutlet weak var categoryTextfield: UITextField!
     
     
-    let categories = ["", "Food", "Entertainment", "Transportation"]
+    let debitCategories: [String]  = [
+        "",
+        DebitCategories.entertainment.rawValue,
+        DebitCategories.food.rawValue,
+        DebitCategories.other.rawValue,
+        DebitCategories.services.rawValue,
+        DebitCategories.transportation.rawValue
+    ]
+    
+    let gainCategories: [String] = [
+        "",
+        GainCategories.salary.rawValue,
+        GainCategories.extra.rawValue
+    ]
+    
+    var pickerView:  UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let pickerView =  UIPickerView()
+        pickerView = UIPickerView()
         pickerView.dataSource = self
         pickerView.delegate = self
         categoryTextfield.inputView = pickerView
@@ -41,12 +58,50 @@ class AddTransactionViewController: UIViewController {
         self.dismiss()
     }
     @IBAction func AddButtonTapped(_ sender: Any) {
+        
+        guard let value = amountTextfield.text, !value.isEmpty else {
+            self.presentAlert(title: "Informacion incompleta", subtitle: "inserte un valor")
+            return
+        }
+        
+        guard let concept = conceptTextfield.text,!concept.isEmpty else {
+            self.presentAlert(title: "Informacion incompleta", subtitle: "Inserte un concepto")
+            return
+        }
+        
+        guard let category = categoryTextfield.text, !category.isEmpty else {
+            self.presentAlert(title: "Informacion incompleta", subtitle: "seleccione categoria")
+            return
+        }
+        
+        
+        if isDebitSelected() {
+    
+        }
+        
         //AddTransaccion
-        self.dismiss()
+//        self.dismiss()
+    }
+    @IBAction func transactionTypeChanged(_ sender: Any) {
+        pickerView.selectRow(0, inComponent: 0, animated: true)
+        self.categoryTextfield.text = ""
+        DispatchQueue.main.async {
+            self.pickerView.reloadAllComponents()
+        }
+    }
+    
+    func presentAlert(title: String?, subtitle: String ) {
+        let alert = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func dismiss() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func isDebitSelected() -> Bool {
+        return transaccionTypeSegmentedControl.selectedSegmentIndex == 0
     }
 }
 
@@ -57,11 +112,27 @@ extension AddTransactionViewController: UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return categories.count
+        if  isDebitSelected(){
+            return debitCategories.count
+        }
+        return gainCategories.count
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return categories[row]
+        if isDebitSelected() {
+            return debitCategories[row]
+        }
+        return gainCategories[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if isDebitSelected() {
+            categoryTextfield.text = debitCategories[row]
+        } else {
+            categoryTextfield.text = gainCategories[row]
+        }
+        
     }
     
     
