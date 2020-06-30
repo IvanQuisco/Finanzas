@@ -24,6 +24,8 @@ class AddTransactionViewController: UIViewController {
     
     var delegate: AddTransactionViewControllerDelegate?
     
+    var pickerView:  UIPickerView!
+    
     let debitCategories: [String]  = [
         "",
         DebitCategories.entertainment.rawValue,
@@ -39,8 +41,6 @@ class AddTransactionViewController: UIViewController {
         GainCategories.extra.rawValue
     ]
     
-    var pickerView:  UIPickerView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,60 +50,27 @@ class AddTransactionViewController: UIViewController {
         categoryTextfield.inputView = pickerView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        amountTextfield.becomeFirstResponder()
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         amountTextfield.endEditing(true)
         conceptTextfield.endEditing(true)
         categoryTextfield.endEditing(true)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        amountTextfield.becomeFirstResponder()
-        
-    
-    }
-    
-
 
     @IBAction func CancelButtonTapped(_ sender: Any) {
-        self.dismiss()
+        self.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func AddButtonTapped(_ sender: Any) {
         
-        guard let value = amountTextfield.text, !value.isEmpty, let valueFloat = Float(value) else {
-            self.presentAlert(title: "Informacion incompleta", subtitle: "inserte un valor")
-            return
-        }
-        
-        guard let concept = conceptTextfield.text,!concept.isEmpty else {
-            self.presentAlert(title: "Informacion incompleta", subtitle: "Inserte un concepto")
-            return
-        }
-        
-        guard let category = categoryTextfield.text, !category.isEmpty else {
-            self.presentAlert(title: "Informacion incompleta", subtitle: "seleccione categoria")
-            return
-        }
-        
-        
-        if isDebitSelected() {
-            do {
-                try account.addTransaction(with: .debit(value: valueFloat, name: concept, category: DebitCategories(rawValue: category) ?? .other, date: Date()), completion: { (transaction) in
-                    if let transaction = transaction {
-                        self.dismiss(animated: true) {
-                            self.delegate?.didAddTransaction(transaction: transaction)
-                        }
-                    }
-                })
-            } catch {
-                self.presentAlert(title: "Error", subtitle: error.localizedDescription)
-            }
-    
-        }
-        
-        //AddTransaccion
-//        self.dismiss()
+        addTransaction()
+
     }
+    
     @IBAction func transactionTypeChanged(_ sender: Any) {
         pickerView.selectRow(0, inComponent: 0, animated: true)
         self.categoryTextfield.text = ""
@@ -112,14 +79,55 @@ class AddTransactionViewController: UIViewController {
         }
     }
     
+    func addTransaction() {
+        guard let value = amountTextfield.text, !value.isEmpty, let valueFloat = Float(value) else {
+                self.presentAlert(title: "Informacion incompleta", subtitle: "inserte un valor")
+                return
+            }
+            
+            guard let concept = conceptTextfield.text,!concept.isEmpty else {
+                self.presentAlert(title: "Informacion incompleta", subtitle: "Inserte un concepto")
+                return
+            }
+            
+            guard let category = categoryTextfield.text, !category.isEmpty else {
+                self.presentAlert(title: "Informacion incompleta", subtitle: "seleccione categoria")
+                return
+            }
+            
+            
+            if isDebitSelected() {
+                do {
+                    try account.addTransaction(with: .debit(value: valueFloat, name: concept, category: DebitCategories(rawValue: category) ?? .other, date: Date()), completion: { (transaction) in
+                        if let transaction = transaction {
+                            self.dismiss(animated: true) {
+                                self.delegate?.didAddTransaction(transaction: transaction)
+                            }
+                        }
+                    })
+                } catch {
+                    self.presentAlert(title: "Error", subtitle: error.localizedDescription)
+                }
+        
+            } else {
+                do {
+                    try account.addTransaction(with: .gain(value: valueFloat, name: concept, category: GainCategories(rawValue: category) ?? .extra, date: Date()), completion: { (transaction) in
+                        if let transaction = transaction {
+                            self.dismiss(animated: true) {
+                                self.delegate?.didAddTransaction(transaction: transaction)
+                            }
+                        }
+                    })
+                } catch {
+                    self.presentAlert(title: "Error", subtitle: error.localizedDescription)
+                }
+            }
+    }
+    
     func presentAlert(title: String?, subtitle: String ) {
         let alert = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    func dismiss() {
-        self.dismiss(animated: true, completion: nil)
     }
     
     func isDebitSelected() -> Bool {
