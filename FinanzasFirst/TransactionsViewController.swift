@@ -16,35 +16,18 @@ class TransactionsViewController: UIViewController {
     var person: Person!
     var account: Account!
     
-    var dataSource: [Transaction] = []
-    
+    var dataSource: [Transaction] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableview.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         simulateAccount()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        updateDataSource()
-    }
-    
-    
-    func updateDataSource() {
-        dataSource.removeAll()
-        for transaction in account.gains {
-            dataSource.append(transaction)
-        }
-        
-        for transaction in account.debits {
-            dataSource.append(transaction)
-        }
-        
-        dataSource.sort(by: {$0.date > $1.date})
-        DispatchQueue.main.async {
-            self.tableview.reloadData()
-        }
     }
     
     private func simulateAccount() {
@@ -66,9 +49,8 @@ class TransactionsViewController: UIViewController {
                 if let transaction = transaction {
                     self.dataSource.insert(transaction, at: 0)
                 }
-                DispatchQueue.main.async {
-                    self.tableview.reloadData()
-                }            })
+                
+             })
         } catch {
             print("error en la transaccion", error)
         }
@@ -77,9 +59,6 @@ class TransactionsViewController: UIViewController {
              try account.addTransaction(with: .debit(value: 45, name: "Refresco", category: .food, date: Date(year: 2019, month: 10, day: 22)), completion: { transaction in
                 if let transaction = transaction {
                     self.dataSource.insert(transaction, at: 0)
-                }
-                DispatchQueue.main.async {
-                    self.tableview.reloadData()
                 }
             })
         } catch {
@@ -91,9 +70,6 @@ class TransactionsViewController: UIViewController {
                 if let transaction = transaction {
                     self.dataSource.insert(transaction, at: 0)
                 }
-                DispatchQueue.main.async {
-                    self.tableview.reloadData()
-                }
             })
         } catch {
             print("error en la transaccion", error)
@@ -103,9 +79,6 @@ class TransactionsViewController: UIViewController {
              try account.addTransaction(with: .debit(value: 120, name: "Netflix", category: .entertainment, date: Date(year: 2019, month: 10, day: 25)), completion: { transaction in
                 if let transaction = transaction {
                     self.dataSource.insert(transaction, at: 0)
-                }
-                DispatchQueue.main.async {
-                    self.tableview.reloadData()
                 }
             })
         } catch {
@@ -117,9 +90,6 @@ class TransactionsViewController: UIViewController {
                 if let transaction = transaction {
                     self.dataSource.insert(transaction, at: 0)
                 }
-                DispatchQueue.main.async {
-                    self.tableview.reloadData()
-                }
             })
         } catch {
             print("error en la transaccion", error)
@@ -129,9 +99,6 @@ class TransactionsViewController: UIViewController {
              try account.addTransaction(with: .debit(value: 300, name: "Electricidad", category: .services, date: Date(year: 2019, month: 10, day: 30)), completion: { transaction in
                 if let transaction = transaction {
                     self.dataSource.insert(transaction, at: 0)
-                }
-                DispatchQueue.main.async {
-                    self.tableview.reloadData()
                 }
             })
         } catch {
@@ -143,9 +110,6 @@ class TransactionsViewController: UIViewController {
                 if let transaction = transaction {
                     self.dataSource.insert(transaction, at: 0)
                 }
-                DispatchQueue.main.async {
-                    self.tableview.reloadData()
-                }
             })
         } catch {
             print("error en la transaccion", error)
@@ -156,9 +120,7 @@ class TransactionsViewController: UIViewController {
                 if let transaction = transaction {
                     self.dataSource.insert(transaction, at: 0)
                 }
-                DispatchQueue.main.async {
-                    self.tableview.reloadData()
-                }
+                
             })
         } catch {
             print("error en la transaccion", error)
@@ -170,6 +132,7 @@ class TransactionsViewController: UIViewController {
             if let destViewController = segue.destination as?  UINavigationController {
                 if let controller = destViewController.viewControllers.first as? AddTransactionViewController {
                     controller.account = self.account
+                    controller.delegate = self
                 }
             }
             
@@ -186,6 +149,16 @@ extension TransactionsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! TransaccionCell
         cell.setCell(with: dataSource[indexPath.row])
         return cell
+    }
+    
+    
+}
+
+
+extension TransactionsViewController: AddTransactionViewControllerDelegate {
+    func didAddTransaction(transaction: Transaction) {
+        dataSource.insert(transaction, at: 0)
+        
     }
     
     

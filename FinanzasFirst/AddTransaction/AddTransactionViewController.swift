@@ -9,6 +9,10 @@
 import UIKit
 import FinanzasCore
 
+protocol AddTransactionViewControllerDelegate {
+    func didAddTransaction(transaction: Transaction)
+}
+
 class AddTransactionViewController: UIViewController {
 
     @IBOutlet weak var transaccionTypeSegmentedControl: UISegmentedControl!
@@ -18,6 +22,7 @@ class AddTransactionViewController: UIViewController {
     
     var account: Account!
     
+    var delegate: AddTransactionViewControllerDelegate?
     
     let debitCategories: [String]  = [
         "",
@@ -84,7 +89,11 @@ class AddTransactionViewController: UIViewController {
         if isDebitSelected() {
             do {
                 try account.addTransaction(with: .debit(value: valueFloat, name: concept, category: DebitCategories(rawValue: category) ?? .other, date: Date()), completion: { (transaction) in
-                    self.dismiss()
+                    if let transaction = transaction {
+                        self.dismiss(animated: true) {
+                            self.delegate?.didAddTransaction(transaction: transaction)
+                        }
+                    }
                 })
             } catch {
                 self.presentAlert(title: "Error", subtitle: error.localizedDescription)
