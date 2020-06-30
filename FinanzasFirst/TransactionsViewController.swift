@@ -7,19 +7,35 @@
 //
 
 import UIKit
+import FinanzasCore
 
 class TransactionsViewController: UIViewController {
 
     @IBOutlet weak var tableview: UITableView!
     
+    var person: Person!
+    var account: Account!
+    
+    var dataSource: [Transaction] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        simulateAccount()
+    }
+    
+    private func simulateAccount() {
+        person = Person(name: "Juan", lastName: "Perez")
+        account = Account(amount: 1_500, name: "Santander")
+        
+        person.account = account
     }
 }
 
 extension TransactionsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
