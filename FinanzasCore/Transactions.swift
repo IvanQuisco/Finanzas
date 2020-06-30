@@ -23,13 +23,15 @@ public protocol Transaction {
 }
 
 extension Transaction {
-    mutating public func invalidateTransaction()  {
+    mutating public func invalidateTransaction(compleation: ((_ succeeded: Bool) -> Void)?)  {
         if self.completed {
             isValid = false
             delegate?.invalidateTransaccion(transaction: self)
             print("transaction invalidated \((self.name) )")
+            compleation?(true)
         } else {
             print("waiting for confirmation")
+            compleation?(false)
         }
             
     }

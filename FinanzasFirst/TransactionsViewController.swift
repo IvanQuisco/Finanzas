@@ -76,6 +76,40 @@ extension TransactionsViewController: UITableViewDataSource {
     }
 }
 
+extension TransactionsViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        let action = UITableViewRowAction(style: .default, title: "Invalidate") { (action, indexpath) in
+//            print("let's invalidate this")
+//        }
+//        action.backgroundColor = .purple
+//        return [action]
+//    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let invalidate = UIContextualAction(style: .normal, title: "Invalidate") { (_, _, _) in
+            print("let's invalidate this")
+            
+            self.dataSource[indexPath.row].invalidateTransaction { (succeeded) in
+                if succeeded {
+                    DispatchQueue.main.async {
+                        tableView.reloadData()
+                    }
+                }
+            }
+        }
+        invalidate.backgroundColor = .purple
+        let swipeActions = UISwipeActionsConfiguration(actions: [invalidate])
+        return swipeActions
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return dataSource[indexPath.row].isValid
+    }
+    
+    
+
+}
+
 
 extension TransactionsViewController: AddTransactionViewControllerDelegate {
     func didAddTransaction(transaction: Transaction) {

@@ -206,6 +206,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="L7C-ZP-c37" id="2eK-ck-ZQc"/>
+                                    <outlet property="delegate" destination="L7C-ZP-c37" id="qoF-n8-Q5x"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RrA-Sw-ELE">
