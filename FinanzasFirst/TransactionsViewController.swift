@@ -59,6 +59,22 @@ class TransactionsViewController: UIViewController {
             
         }
     }
+    
+    
+    func invalidateTransactionAt(index: Int) {
+        let alert = UIAlertController(title: "Invalidar?", message: "Esta accion es irreversible", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Continuar", style: .destructive, handler: { (btn) in
+            self.dataSource[index].invalidateTransaction { (succeeded) in
+                if succeeded {
+                    DispatchQueue.main.async {
+                        self.tableview.reloadData()
+                    }
+                }
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 extension TransactionsViewController: UITableViewDataSource {
@@ -87,15 +103,7 @@ extension TransactionsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let invalidate = UIContextualAction(style: .normal, title: "Invalidate") { (_, _, _) in
-            print("let's invalidate this")
-            
-            self.dataSource[indexPath.row].invalidateTransaction { (succeeded) in
-                if succeeded {
-                    DispatchQueue.main.async {
-                        tableView.reloadData()
-                    }
-                }
-            }
+            self.invalidateTransactionAt(index: indexPath.row)
         }
         invalidate.backgroundColor = .purple
         let swipeActions = UISwipeActionsConfiguration(actions: [invalidate])
