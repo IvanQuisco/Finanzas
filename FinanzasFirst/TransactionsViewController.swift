@@ -24,6 +24,13 @@ class TransactionsViewController: UIViewController {
         }
     }
     
+    var emptyStateView: UIImageView = {
+        let image = UIImage(named: "emptyState")?.withRenderingMode(.alwaysOriginal)
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +63,10 @@ class TransactionsViewController: UIViewController {
 
 extension TransactionsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        let count = dataSource.count
+        tableView.backgroundView = count == 0 ? emptyStateView : nil
+        tableView.separatorStyle = count == 0 ? .none : .singleLine
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
