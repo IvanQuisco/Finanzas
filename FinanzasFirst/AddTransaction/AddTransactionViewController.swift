@@ -16,6 +16,8 @@ class AddTransactionViewController: UIViewController {
     @IBOutlet weak var conceptTextfield: UITextField!
     @IBOutlet weak var categoryTextfield: UITextField!
     
+    var account: Account!
+    
     
     let debitCategories: [String]  = [
         "",
@@ -52,14 +54,18 @@ class AddTransactionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         amountTextfield.becomeFirstResponder()
+        
+    
     }
+    
+
 
     @IBAction func CancelButtonTapped(_ sender: Any) {
         self.dismiss()
     }
     @IBAction func AddButtonTapped(_ sender: Any) {
         
-        guard let value = amountTextfield.text, !value.isEmpty else {
+        guard let value = amountTextfield.text, !value.isEmpty, let valueFloat = Float(value) else {
             self.presentAlert(title: "Informacion incompleta", subtitle: "inserte un valor")
             return
         }
@@ -76,6 +82,13 @@ class AddTransactionViewController: UIViewController {
         
         
         if isDebitSelected() {
+            do {
+                try account.addTransaction(with: .debit(value: valueFloat, name: concept, category: DebitCategories(rawValue: category) ?? .other, date: Date()), completion: { (transaction) in
+                    self.dismiss()
+                })
+            } catch {
+                self.presentAlert(title: "Error", subtitle: error.localizedDescription)
+            }
     
         }
         

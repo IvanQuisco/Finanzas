@@ -221,7 +221,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="7uf-5R-c7c" kind="show" id="d98-rb-LWL"/>
+                                    <segue destination="7uf-5R-c7c" kind="presentation" identifier="addTransaction" modalPresentationStyle="fullScreen" id="d98-rb-LWL"/>
                                 </connections>
                             </button>
                         </subviews>
