@@ -31,8 +31,12 @@ class TransactionsViewController: UIViewController {
     }
     
     private func simulateAccount() {
-        person = Person(name: "Juan", lastName: "Perez")
-        account = Account(amount: 1_500, name: "Santander")
+        guard let tab = self.tabBarController as? BaseTabBarViewController else {
+            return
+        }
+        
+        person = tab.person
+        account = tab.account
         
         person.account = account
         
