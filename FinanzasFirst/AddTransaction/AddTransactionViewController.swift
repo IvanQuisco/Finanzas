@@ -41,6 +41,8 @@ class AddTransactionViewController: UIViewController {
         GainCategories.extra.rawValue
     ]
     
+    var repetitionFlag = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -80,48 +82,57 @@ class AddTransactionViewController: UIViewController {
     }
     
     func addTransaction() {
+        
+        
+        
         guard let value = amountTextfield.text, !value.isEmpty, let valueFloat = Float(value) else {
                 self.presentAlert(title: "Informacion incompleta", subtitle: "inserte un valor")
                 return
             }
             
-            guard let concept = conceptTextfield.text,!concept.isEmpty else {
-                self.presentAlert(title: "Informacion incompleta", subtitle: "Inserte un concepto")
-                return
-            }
-            
-            guard let category = categoryTextfield.text, !category.isEmpty else {
-                self.presentAlert(title: "Informacion incompleta", subtitle: "seleccione categoria")
-                return
-            }
-            
-            
-            if isDebitSelected() {
-                do {
-                    try account.addTransaction(with: .debit(value: valueFloat, name: concept, category: DebitCategories(rawValue: category) ?? .other, date: Date()), completion: { (transaction) in
-                        if let transaction = transaction {
-                            self.dismiss(animated: true) {
-                                self.delegate?.didAddTransaction(transaction: transaction)
-                            }
-                        }
-                    })
-                } catch {
-                    self.presentAlert(title: "Error", subtitle: error.localizedDescription)
-                }
+        guard let concept = conceptTextfield.text,!concept.isEmpty else {
+            self.presentAlert(title: "Informacion incompleta", subtitle: "Inserte un concepto")
+            return
+        }
         
-            } else {
-                do {
-                    try account.addTransaction(with: .gain(value: valueFloat, name: concept, category: GainCategories(rawValue: category) ?? .extra, date: Date()), completion: { (transaction) in
-                        if let transaction = transaction {
-                            self.dismiss(animated: true) {
-                                self.delegate?.didAddTransaction(transaction: transaction)
-                            }
+        guard let category = categoryTextfield.text, !category.isEmpty else {
+            self.presentAlert(title: "Informacion incompleta", subtitle: "seleccione categoria")
+            return
+        }
+        
+        guard repetitionFlag == false else {
+            return
+        }
+        repetitionFlag = true
+        
+        if isDebitSelected() {
+            do {
+                try account.addTransaction(with: .debit(value: valueFloat, name: concept, category: DebitCategories(rawValue: category) ?? .other, date: Date()), completion: { (transaction) in
+                    if let transaction = transaction {
+                        self.dismiss(animated: true) {
+                            self.delegate?.didAddTransaction(transaction: transaction)
                         }
-                    })
-                } catch {
-                    self.presentAlert(title: "Error", subtitle: error.localizedDescription)
-                }
+                    }
+                })
+            } catch {
+                self.repetitionFlag = false
+                self.presentAlert(title: "Error", subtitle: error.localizedDescription)
             }
+    
+        } else {
+            do {
+                try account.addTransaction(with: .gain(value: valueFloat, name: concept, category: GainCategories(rawValue: category) ?? .extra, date: Date()), completion: { (transaction) in
+                    if let transaction = transaction {
+                        self.dismiss(animated: true) {
+                            self.delegate?.didAddTransaction(transaction: transaction)
+                        }
+                    }
+                })
+            } catch {
+                self.repetitionFlag = false
+                self.presentAlert(title: "Error", subtitle: error.localizedDescription)
+            }
+        }
     }
     
     func presentAlert(title: String?, subtitle: String ) {
