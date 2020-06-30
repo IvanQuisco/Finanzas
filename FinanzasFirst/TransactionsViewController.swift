@@ -80,8 +80,5 @@ extension TransactionsViewController: UITableViewDataSource {
 extension TransactionsViewController: AddTransactionViewControllerDelegate {
     func didAddTransaction(transaction: Transaction) {
         dataSource.insert(transaction, at: 0)
-        
     }
-    
-    
 }

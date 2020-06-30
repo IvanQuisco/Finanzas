@@ -30,7 +30,7 @@ class TransaccionCell: UITableViewCell {
     }
     
     func setCell(with transaction: Transaction) {
-        valueLabel.text = getFormattedCurrency(value: transaction.value)
+        valueLabel.text = transaction.value.currencyFormat()
         nameLabel.text = transaction.name
         dateLabel.text = getFormattedDate(date: transaction.date)
         categoryImageView.image = geImageForCategory(of: transaction)
@@ -82,12 +82,4 @@ class TransaccionCell: UITableViewCell {
         dateformat.dateFormat = "dd-MM-yyyy hh:mm:ss"
         return dateformat.string(from: date)
     }
-    
-    func getFormattedCurrency(value: Float) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = .current
-        return formatter.string(from: NSNumber(value: value))!
-    }
-
 }

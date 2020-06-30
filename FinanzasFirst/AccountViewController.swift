@@ -13,6 +13,7 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var bankLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -22,7 +23,7 @@ class AccountViewController: UIViewController {
         if let tab = self.tabBarController as? BaseTabBarViewController {
             nameLabel.text = tab.person.fullName
             bankLabel.text = tab.account.name
-            amountLabel.text = String(tab.account.amount)
+            amountLabel.text = tab.account.amount.currencyFormat()
         }
     }
 
