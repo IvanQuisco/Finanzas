@@ -40,6 +40,8 @@ class TransactionsViewController: UIViewController {
         for transaction in account.debits {
             dataSource.append(transaction)
         }
+        
+        dataSource.sort(by: {$0.date > $1.date})
         DispatchQueue.main.async {
             self.tableview.reloadData()
         }
