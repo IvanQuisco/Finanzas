@@ -39,96 +39,6 @@ class TransactionsViewController: UIViewController {
         account = tab.account
         
         person.account = account
-        
-        for transaction in account.gains {
-            dataSource.append(transaction)
-        }
-        
-        for transaction in account.debits {
-            dataSource.append(transaction)
-        }
-        
-        do {
-             try account.addTransaction(with: .debit(value: 200, name: "Dulces", category: .food, date: Date(year: 2019, month: 10, day: 21)), completion: { transaction in
-                if let transaction = transaction {
-                    self.dataSource.insert(transaction, at: 0)
-                }
-                
-             })
-        } catch {
-            print("error en la transaccion", error)
-        }
-        
-        do {
-             try account.addTransaction(with: .debit(value: 45, name: "Refresco", category: .food, date: Date(year: 2019, month: 10, day: 22)), completion: { transaction in
-                if let transaction = transaction {
-                    self.dataSource.insert(transaction, at: 0)
-                }
-            })
-        } catch {
-            print("error en la transaccion", error)
-        }
-        
-        do {
-             try account.addTransaction(with: .debit(value: 100, name: "Uber", category: .transportation, date: Date(year: 2019, month: 10, day: 23)), completion: { transaction in
-                if let transaction = transaction {
-                    self.dataSource.insert(transaction, at: 0)
-                }
-            })
-        } catch {
-            print("error en la transaccion", error)
-        }
-        
-        do {
-             try account.addTransaction(with: .debit(value: 120, name: "Netflix", category: .entertainment, date: Date(year: 2019, month: 10, day: 25)), completion: { transaction in
-                if let transaction = transaction {
-                    self.dataSource.insert(transaction, at: 0)
-                }
-            })
-        } catch {
-            print("error en la transaccion", error)
-        }
-        
-        do {
-            try account.addTransaction(with: .debit(value: 200, name: "Gasto random", category: .other, date: Date(year: 2019, month: 10, day: 27)), completion: { transaction in
-                if let transaction = transaction {
-                    self.dataSource.insert(transaction, at: 0)
-                }
-            })
-        } catch {
-            print("error en la transaccion", error)
-        }
-        
-        do {
-             try account.addTransaction(with: .debit(value: 300, name: "Electricidad", category: .services, date: Date(year: 2019, month: 10, day: 30)), completion: { transaction in
-                if let transaction = transaction {
-                    self.dataSource.insert(transaction, at: 0)
-                }
-            })
-        } catch {
-            print("error en la transaccion", error)
-        }
-        
-        do {
-             try account.addTransaction(with: .gain(value: 1000, name: "Salario Octubre 1", category: .salary, date: Date(year: 2019, month: 10, day: 30)), completion: { transaction in
-                if let transaction = transaction {
-                    self.dataSource.insert(transaction, at: 0)
-                }
-            })
-        } catch {
-            print("error en la transaccion", error)
-        }
-        
-        do {
-             try account.addTransaction(with: .gain(value: 500, name: "Pryecto", category: .extra, date: Date(year: 2019, month: 10, day: 30)), completion: { transaction in
-                if let transaction = transaction {
-                    self.dataSource.insert(transaction, at: 0)
-                }
-                
-            })
-        } catch {
-            print("error en la transaccion", error)
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -154,8 +64,6 @@ extension TransactionsViewController: UITableViewDataSource {
         cell.setCell(with: dataSource[indexPath.row])
         return cell
     }
-    
-    
 }
 
 

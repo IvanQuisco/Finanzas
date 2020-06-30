@@ -21,8 +21,8 @@ class BaseTabBarViewController: UITabBarController {
     }
     
     private func simulateAccount() {
-        person = Person(name: "Juan", lastName: "Perez")
-        account = Account(amount: 1_500, name: "Santander")
+        person = Person(name: "Ivan", lastName: "Quitana")
+        account = Account(amount: 4_000, name: "Santander")
         
         person.account = account
     }
