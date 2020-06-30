@@ -22,7 +22,7 @@ public class Account {
 
     
     @discardableResult
-       public func addTransaction(with transaction: TransactionType?) throws -> Transaction? {
+    public func addTransaction(with transaction: TransactionType?, completion: ((_ transaccion: Transaction?) -> Void)?) throws -> Transaction? {
            guard let transaction = transaction else {
                 throw AccountException.invalidTransaction
            }
@@ -39,6 +39,7 @@ public class Account {
                     debit.confirmation = confirmation
                     self.amount -= debit.value
                     self.debits.append(debit)
+                    completion?(debit)
                 }
                }
                return debit
@@ -50,6 +51,7 @@ public class Account {
                     gain.confirmation = confirmation
                     self.amount += gain.value
                     self.gains.append(gain)
+                    completion?(gain)
                 }
                }
                return gain

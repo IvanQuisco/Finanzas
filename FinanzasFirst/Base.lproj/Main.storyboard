@@ -97,7 +97,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellID" rowHeight="79" id="03M-s2-P2V">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellID" rowHeight="79" id="03M-s2-P2V" customClass="TransaccionCell" customModule="FinanzasFirst" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="03M-s2-P2V" id="3pJ-rZ-9JR">
@@ -189,6 +189,14 @@
                                                 <constraint firstItem="TO9-B4-FCu" firstAttribute="centerY" secondItem="3pJ-rZ-9JR" secondAttribute="centerY" id="yTu-wJ-PS2"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="categoryImageView" destination="o0E-Et-CVb" id="5Lq-dY-9VD"/>
+                                            <outlet property="dateLabel" destination="kOT-UV-dkp" id="vbf-fF-XDh"/>
+                                            <outlet property="nameLabel" destination="Y4j-pa-97t" id="42h-ae-XKK"/>
+                                            <outlet property="transactionTypeImageView" destination="5ix-9L-IbG" id="Qrc-dI-ZPC"/>
+                                            <outlet property="validTransactionView" destination="kL6-sM-V0u" id="iSf-s0-LfN"/>
+                                            <outlet property="valueLabel" destination="16w-4B-LQc" id="qk5-fh-E3P"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -291,6 +299,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="f2J-vs-TWM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EUS-VK-cs7">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
